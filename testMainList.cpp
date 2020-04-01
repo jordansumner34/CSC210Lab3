@@ -9,6 +9,7 @@
 
 using namespace std;
 #include "List.cpp"
+#include "listsorted.cpp"
 
 
 ifstream fin ("listIn.txt");
