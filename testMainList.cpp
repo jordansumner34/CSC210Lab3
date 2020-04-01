@@ -9,29 +9,28 @@
 
 using namespace std;
 #include "List.cpp"
-#include "listsorted.cpp"
+#include "ListSorted.cpp"
 
+void process(ListSorted<stuRecord>);  // pass by value
 
 ifstream fin ("listIn.txt");
 ofstream fout("listOut.txt");
 
-void process(List<stuRecord>);  // pass by value
-
 int main()
 {
     List<stuRecord> list0;      // create object list0 with no stuRecords
-    //List<stuRecord> list1;
-    List<stuRecord> list2;
+    ListSorted<stuRecord> list1;
+    ListSorted<stuRecord> list2;
 
-    fin >> list0;           // extraction operator overloaded works fine.
+    fin >> list2;           // extraction operator overloaded works fine.
     fin.close();            // close the input file
 
-    cout << list0;          // insertion operator is crippled, but works
-    fout << list0;
+    cout << list2;          // insertion operator is crippled, but works
+    fout << list2;
 
-    list2 = list0;          // you'll have to overload operator = to do this.
+    list0 = list1 = list2;   // overload operator = chained.
 
-    process(list2);
+    process(list2);          // call process
 
     cout << list2;
     fout << list2;
@@ -45,7 +44,7 @@ int main()
 }
 
 // process funtion passes a deep copy of list 2 in.
-void process(List<stuRecord> list)
+void process(ListSorted<stuRecord> list)
 {
 
     /// call a funtion instead of these liones
@@ -70,6 +69,7 @@ void process(List<stuRecord> list)
     local.gender = 'M';
 
     list.insertLast(local);
+    list.sortLinkedList("Name");
 
     cout << list;
     fout << list;
