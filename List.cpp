@@ -125,20 +125,25 @@ bool List<Type>::deleteNode(const Type& deleteItem)
     bool found;
 
     if (first == nullptr)               //Case 1; the list is empty.
-        cout << "Cannot delete from an empty list."
+    {
+
+        cout << "Error! Cannot delete from an empty list."
              << endl;
+        return false;
+    }
     else
     {
         if (first->stuRecord.name == deleteItem.name)  //Case 2
         {
-            current = first;            // Save the first pointer to curr
-            first = first->link;        // adv. 1st ptr to next node
-            count--;                    // decrement count
-            if (first == nullptr)       //the list has only one node
-                last = nullptr;         // assign nullptr to last
-            delete current;             // deallocate first node
+            current = first;            //copy first pointer
+            first = first->link;        //traverse first pointer
+            count--;                    //decrement the count
+            if (first == nullptr)       //tests the list for only 1 node
+                last = nullptr;         //assign last to nullptr
+            delete current;             //deallocate the first node
+            return true;                //deleted the 1st record.
         }
-        else //search the list for the node with the given info
+        else //search the list for the node with the given stuRecord
         {
             found = false;
             trailCurrent = first;       //set trailCurrent to point
@@ -148,7 +153,7 @@ bool List<Type>::deleteNode(const Type& deleteItem)
 
             while (current != nullptr && !found)
             {
-                if (current->stuRecord != deleteItem)
+                if (current->stuRecord.name != deleteItem.name)
                 {
                     trailCurrent = current;
                     current = current-> link;
@@ -167,10 +172,10 @@ bool List<Type>::deleteNode(const Type& deleteItem)
                     last = trailCurrent; //update the value
                                          //of last
                 delete current;          //delete the node from the list
+                return true;             //record was found
             }
             else
-                cout << "The item to be deleted is not in "
-                     << "the list." << endl;
+                return false;
         }//end else
     }//end else
 }//end deleteNode
@@ -278,6 +283,3 @@ ostream & operator<< (ostream & outfile, const List<Type> & obj)
     }
     return outfile;                                 // return to the data stream
 }
-
-
-
