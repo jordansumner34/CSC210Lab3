@@ -1,7 +1,7 @@
 // linkedList.cpp (implementation file for the linkedList)
 // What this implementation file does...............March 30th
-// Written by Kendra Schall and Jordan Summer 
-// Date: 08 April 2020
+// Written by ...............................................
+// Date: ....................................................
 
 #include "List.h"
 
@@ -153,11 +153,7 @@ bool List<Type>::deleteNode(const Type& deleteItem)
 
             while (current != nullptr && !found)
             {
-<<<<<<< Updated upstream
                 if (current->stuRecord.name != deleteItem.name)
-=======
-                if (current->stuRecord ! = deleteItem)
->>>>>>> Stashed changes
                 {
                     trailCurrent = current;
                     current = current-> link;
@@ -278,8 +274,8 @@ ostream & operator<< (ostream & outfile, const List<Type> & obj)
         outfile << left << setw(23);
         outfile << curr->stuRecord.name;    // output the name (hint) left justified
         // right justify the rest of the data
-        outfile << right;
-        outfile << curr->stuRecord.zipCode << "\t"; // output the zipCode
+        outfile <<right;
+        outfile << setw(1) << " " << curr->stuRecord.zipCode << "\t"; // output the zipCode
         outfile << curr->stuRecord.gender << "\t";  // output the gender
         outfile << curr->stuRecord.fGpa   << "\t";  // output the gpa
         outfile << endl;                            // end of line after this record
